@@ -141,12 +141,9 @@
         var circles = context.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-        var max;
-        var min;
-        data.forEach(function(d, i) { 
-            max= d3.max(d.count);
-            min=d3.min(d.count);
-        });
+        var counts = data.map(function(array) {return array.count;} );
+        var max = d3.max( counts );
+        var min = d3.min( counts );
         console.log(max, ':max', min, ':min');
   
         circles.selectAll(".circ")
