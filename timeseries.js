@@ -141,6 +141,14 @@
         var circles = context.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
+        var max;
+        var min;
+        data.forEach(function(d, i) { 
+            max= d3.max(d.count);
+            min=d3.min(d.count);
+        });
+        console.log(max, ':max', min, ':min');
+  
         circles.selectAll(".circ")
             .data(data)
             .enter().append("circle")
@@ -151,7 +159,7 @@
             .attr("cy", function(d, i) {
                 return (lessThanDay(padding.pad)) ? y(getDate(d.value)) : y(getTime(d.value));
             })
-            .attr("r", 9)
+            .attr("r", 5)
             .on("click", function(d) {
                 console.log(new Date(d.value));
             })
