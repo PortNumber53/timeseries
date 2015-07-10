@@ -145,6 +145,7 @@
         var max = d3.max( counts );
         var min = d3.min( counts );
         console.log(max, ':max', min, ':min');
+        var interval = max - min;
   
         circles.selectAll(".circ")
             .data(data)
@@ -156,7 +157,9 @@
             .attr("cy", function(d, i) {
                 return (lessThanDay(padding.pad)) ? y(getDate(d.value)) : y(getTime(d.value));
             })
-            .attr("r", 5)
+            .attr("r", function(d, i) {
+                return Math.round(d.count * 10 / interval)+1;
+            })
             .on("click", function(d) {
                 console.log(new Date(d.value));
             })
